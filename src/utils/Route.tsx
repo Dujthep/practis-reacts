@@ -11,7 +11,7 @@ export function PrivateRoute() {
     {
       path: '/dashboard',
       element: <Layout />,
-      children: [{ path: '/', element: <Dashboard /> }],
+      children: [{ path: '/dashboard', element: <Dashboard /> }],
     },
   ];
 }

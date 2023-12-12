@@ -1,7 +1,22 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { AuthService } from '../../services/AuthService';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+
+type LoginForm = {
+  username: string;
+  password: string;
+  remember: boolean;
+};
+
+const onFinish = (values: LoginForm, navigate: NavigateFunction) => {
+  AuthService.setCurrenUser(values.username);
+  navigate('/dashboard');
+};
 
 export const Login: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <Form
       name="basic"
@@ -9,7 +24,7 @@ export const Login: React.FC = () => {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
-      // onFinish={onFinish}
+      onFinish={(values) => onFinish(values, navigate)}
       // onFinishFailed={onFinishFailed}
       autoComplete="off"
     >

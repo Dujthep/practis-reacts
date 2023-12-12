@@ -9,9 +9,12 @@ import { PrivateRoute, PublicRoute } from './utils/Route';
 const tmp: any = {};
 
 const router = createBrowserRouter([
-  AuthService.checkAuth() ? PrivateRoute() : tmp,
+  // AuthService.checkAuth() ? PrivateRoute() : tmp,
   ...PublicRoute(),
+  ...PrivateRoute(),
 ]);
+
+console.log(AuthService.checkAuth() ? PrivateRoute() : tmp);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
