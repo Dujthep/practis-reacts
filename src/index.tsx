@@ -1,20 +1,23 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from 'react-router-dom';
+import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { AuthService } from './services/AuthService';
-import { PrivateRoute, PublicRoute } from './utils/Route';
-
-const tmp: any = {};
 
 const router = createBrowserRouter([
-  // AuthService.checkAuth() ? PrivateRoute() : tmp,
-  ...PublicRoute(),
-  ...PrivateRoute(),
+  { path: '/', element: <App /> },
+  {
+    path: '*',
+    element: <App />,
+    loader: () => {
+      throw redirect('/');
+    },
+  },
 ]);
-
-console.log(AuthService.checkAuth() ? PrivateRoute() : tmp);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

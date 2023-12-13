@@ -9,9 +9,9 @@ export function PublicRoute() {
 export function PrivateRoute() {
   return [
     {
-      path: '/dashboard',
+      path: '/',
       element: <Layout />,
-      children: [{ path: '/dashboard', element: <Dashboard /> }],
+      children: [{ path: '/', element: <Dashboard /> }],
     },
   ];
 }

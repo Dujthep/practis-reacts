@@ -1,19 +1,22 @@
 import { Button } from 'antd';
 import React from 'react';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { AuthService } from '../../services/AuthService';
+import { Dashboard } from '../dashboard/Dashboard';
+import { TopMenu } from './components/TopMenu';
+import { SideMenu } from './components/SideMenu';
 
-const onLogout = (navigate: NavigateFunction) => {
+const onLogout = (setAuthenticated: any) => {
   AuthService.removeUser();
-  navigate('/');
+  setAuthenticated(AuthService.checkAuth());
 };
 
-export const Layout: React.FC = () => {
-  const navigate = useNavigate();
-
+export const Layout: React.FC<any> = ({ setAuthenticated }) => {
   return (
     <>
-      <Button onClick={() => onLogout(navigate)}>Logout</Button>
+      <TopMenu />
+      <SideMenu />
+      <Button onClick={() => onLogout(setAuthenticated)}>Logout</Button>
+      <Dashboard />
     </>
   );
 };

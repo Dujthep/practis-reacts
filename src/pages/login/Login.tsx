@@ -1,7 +1,6 @@
-import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import React from 'react';
 import { AuthService } from '../../services/AuthService';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 type LoginForm = {
   username: string;
@@ -9,14 +8,12 @@ type LoginForm = {
   remember: boolean;
 };
 
-const onFinish = (values: LoginForm, navigate: NavigateFunction) => {
+const onFinish = (values: LoginForm, setAuthenticated: any) => {
   AuthService.setCurrenUser(values.username);
-  navigate('/dashboard');
+  setAuthenticated(AuthService.checkAuth());
 };
 
-export const Login: React.FC = () => {
-  const navigate = useNavigate();
-
+export const Login: React.FC<any> = ({ setAuthenticated }) => {
   return (
     <Form
       name="basic"
@@ -24,7 +21,7 @@ export const Login: React.FC = () => {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
-      onFinish={(values) => onFinish(values, navigate)}
+      onFinish={(values) => onFinish(values, setAuthenticated)}
       // onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
