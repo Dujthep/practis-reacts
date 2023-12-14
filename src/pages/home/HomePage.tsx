@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AuthService } from '../../services/AuthService';
-import { Layout } from '../layout/Layout';
+import { LayoutPage } from '../layout/LayoutPage';
 import { Login } from '../login/Login';
 
 export const HomePage: React.FC = () => {
@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => {
   return (
     <>
       {authenticated ? (
-        <Layout setAuthenticated={setAuthenticated} />
+        <LayoutPage setAuthenticated={setAuthenticated} />
       ) : (
         <Login setAuthenticated={setAuthenticated} />
       )}
