@@ -1,20 +1,21 @@
-import { Button, Layout } from 'antd';
-import React from 'react';
-import { AuthService } from '../../services/AuthService';
+import { Layout } from 'antd';
+import React, { useState } from 'react';
 import { Dashboard } from '../dashboard/Dashboard';
-import { TopMenu } from './components/TopMenu';
 import { SideMenu } from './components/SideMenu';
+import { TopMenu } from './components/TopMenu';
 
 export const LayoutPage: React.FC<any> = ({ setAuthenticated }) => {
+  const [col, setCol] = useState(false);
+
   return (
     <Layout
       style={{
         height: '100svh',
       }}
     >
-      <SideMenu />
+      <SideMenu col={col} />
       <Layout>
-        <TopMenu setAuthenticated={setAuthenticated} />
+        <TopMenu setAuthenticated={setAuthenticated} setCol={setCol} />
         <Dashboard />
       </Layout>
     </Layout>

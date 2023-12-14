@@ -1,16 +1,25 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Row, theme } from 'antd';
 import { Header } from 'antd/es/layout/layout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AuthService } from '../services/AuthService';
+import { signal } from '@preact/signals';
+import { collapsed } from '../pages/layout/services/LayoutPageService';
 
 const onLogout = (setAuthenticated: any) => {
   AuthService.removeUser();
   setAuthenticated(AuthService.checkAuth());
 };
 
-export const TopBarComponent: React.FC<any> = ({ setAuthenticated }) => {
-  const [collapsed, setCollapsed] = useState(false);
+const onChangeCollapsed = (value: boolean, setCol: any) => {
+  collapsed.value = !value;
+  setCol(!value);
+};
+
+export const TopBarComponent: React.FC<any> = ({
+  setAuthenticated,
+  setCol,
+}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -22,8 +31,8 @@ export const TopBarComponent: React.FC<any> = ({ setAuthenticated }) => {
       <Row align="middle">
         <Button
           type="text"
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          // onClick={() => setCollapsed(!collapsed)}
+          icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+          onClick={() => onChangeCollapsed(collapsed.value, setCol)}
           style={{
             fontSize: '16px',
             width: 64,
