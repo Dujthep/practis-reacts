@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 import React, { useState } from 'react';
+import { SideBarComponent } from '../../components/SideBarComponent';
+import { TopBarComponent } from '../../components/TopBarComponent';
 import { Dashboard } from '../dashboard/Dashboard';
-import { SideMenu } from './components/SideMenu';
-import { TopMenu } from './components/TopMenu';
 
 export const LayoutPage: React.FC<any> = ({ setAuthenticated }) => {
   const [col, setCol] = useState(false);
@@ -13,9 +13,9 @@ export const LayoutPage: React.FC<any> = ({ setAuthenticated }) => {
         height: '100svh',
       }}
     >
-      <SideMenu col={col} />
+      <SideBarComponent />
       <Layout>
-        <TopMenu setAuthenticated={setAuthenticated} setCol={setCol} />
+        <TopBarComponent setAuthenticated={setAuthenticated} setCol={setCol} />
         <Dashboard />
       </Layout>
     </Layout>

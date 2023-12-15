@@ -1,20 +1,13 @@
 import { Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { collapsed } from '../pages/layout/services/LayoutPageService';
-import { effect } from '@preact/signals';
-import { useEffect } from 'react';
 
-export const SideBarComponent: React.FC<any> = ({ col }) => {
+export const SideBarComponent: React.FC<any> = () => {
   const isCollapsed: boolean = collapsed.value;
-
-  useEffect(() => {
-    console.log(isCollapsed);
-  }, [isCollapsed]);
 
   return (
     <Sider trigger={null} collapsible collapsed={isCollapsed}>
       <div className="demo-logo-vertical" />
-      {col}
       <Menu
         theme="dark"
         mode="inline"

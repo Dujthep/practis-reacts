@@ -1,6 +1,10 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import { AuthService } from '../../services/AuthService';
+import {
+  TEXTBOX_TYPE,
+  TextBoxComponent,
+} from '../../components/TaxtBoxComponent';
 
 type LoginForm = {
   username: string;
@@ -8,12 +12,13 @@ type LoginForm = {
   remember: boolean;
 };
 
-const onFinish = (values: LoginForm, setAuthenticated: any) => {
-  AuthService.setCurrenUser(values.username);
-  setAuthenticated(AuthService.checkAuth());
-};
-
 export const Login: React.FC<any> = ({ setAuthenticated }) => {
+  const onFinish = (values: LoginForm, setAuthenticated: any) => {
+    console.log(values);
+    AuthService.setCurrenUser(values.username);
+    setAuthenticated(AuthService.checkAuth());
+  };
+
   return (
     <Form
       name="basic"
@@ -30,7 +35,7 @@ export const Login: React.FC<any> = ({ setAuthenticated }) => {
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
       >
-        <Input />
+        {<TextBoxComponent type={TEXTBOX_TYPE.TEXT} />}
       </Form.Item>
 
       <Form.Item
@@ -38,7 +43,7 @@ export const Login: React.FC<any> = ({ setAuthenticated }) => {
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password />
+        <TextBoxComponent type={TEXTBOX_TYPE.PASSWORD} />
       </Form.Item>
 
       <Form.Item
