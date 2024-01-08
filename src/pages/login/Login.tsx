@@ -13,6 +13,7 @@ type LoginForm = {
 };
 
 export const Login: React.FC<any> = ({ setAuthenticated }) => {
+  const test = 'asdg';
   const onFinish = (values: LoginForm, setAuthenticated: any) => {
     console.log(values);
     AuthService.setCurrenUser(values.username);
