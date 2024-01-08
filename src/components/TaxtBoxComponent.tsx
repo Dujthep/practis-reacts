@@ -2,6 +2,8 @@ import { Input, InputNumber } from 'antd';
 import React, { useState } from 'react';
 
 export type TextBoxComponentProps = {
+  id: string;
+  className?: string;
   type: TEXTBOX_TYPE;
   options?: any;
   onChange?: (value: any) => void;
@@ -14,7 +16,9 @@ export enum TEXTBOX_TYPE {
 }
 
 export const TextBoxComponent: React.FC<TextBoxComponentProps> = ({
+  id,
   type,
+  className,
   options,
   onChange,
 }) => {
@@ -26,13 +30,19 @@ export const TextBoxComponent: React.FC<TextBoxComponentProps> = ({
   const render = () => {
     switch (type) {
       case TEXTBOX_TYPE.TEXT: {
-        return <Input onChange={onInputChange} />;
+        return <Input id={id} className={className} onChange={onInputChange} />;
       }
       case TEXTBOX_TYPE.PASSWORD: {
-        return <Input.Password onChange={onInputChange} />;
+        return (
+          <Input.Password
+            id={id}
+            className={className}
+            onChange={onInputChange}
+          />
+        );
       }
       case TEXTBOX_TYPE.NUMBER: {
-        return <InputNumber />;
+        return <InputNumber id={id} className={className} />;
       }
     }
   };
