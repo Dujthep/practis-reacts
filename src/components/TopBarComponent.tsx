@@ -1,10 +1,8 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Row, theme } from 'antd';
 import { Header } from 'antd/es/layout/layout';
-import { useEffect, useState } from 'react';
-import { AuthService } from '../services/AuthService';
-import { signal } from '@preact/signals';
 import { collapsed } from '../pages/layout/services/LayoutPageService';
+import { AuthService } from '../services/AuthService';
 
 const onLogout = (setAuthenticated: any) => {
   AuthService.removeUser();
