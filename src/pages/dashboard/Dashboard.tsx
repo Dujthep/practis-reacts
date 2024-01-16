@@ -1,6 +1,6 @@
 import React from 'react';
-import { collapsed } from '../layout/services/LayoutPageService';
+import { url } from '../layout/services/LayoutPageService';
 
 export const Dashboard: React.FC = () => {
-  return <>Dashboard{collapsed.value}</>;
+  return <>Dashboard {url.value}</>;
 };

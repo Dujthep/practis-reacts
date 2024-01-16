@@ -1,6 +1,7 @@
 import App from '../App';
 import { Dashboard } from '../pages/dashboard/Dashboard';
 import { LayoutPage } from '../pages/layout/LayoutPage';
+import { Profile } from '../pages/profile/Profile';
 
 export function PublicRoute() {
   return [{ path: '/', element: <App /> }];
@@ -11,7 +12,7 @@ export function PrivateRoute() {
     {
       path: '/',
       element: <LayoutPage />,
-      children: [{ path: '/', element: <Dashboard /> }],
+      children: [{ path: '/', element: <Profile /> }],
     },
   ];
 }

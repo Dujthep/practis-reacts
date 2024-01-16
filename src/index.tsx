@@ -9,23 +9,24 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 
-const router = createBrowserRouter([
-  { path: '/', element: <App /> },
-  {
-    path: '*',
-    element: <App />,
-    loader: () => {
-      throw redirect('/');
-    },
-  },
-]);
+// const router = createBrowserRouter([
+//   { path: '/', element: <App /> },
+//   {
+//     path: '*',
+//     element: <App />,
+//     loader: () => {
+//       throw redirect('/');
+//     },
+//   },
+// ]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* <RouterProvider router={router} /> */}
+    <App />
   </React.StrictMode>
 );
 

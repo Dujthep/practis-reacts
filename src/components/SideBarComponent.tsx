@@ -2,6 +2,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { collapsed, url } from '../pages/layout/services/LayoutPageService';
+import { useNavigate } from 'react-router-dom';
 
 type MenuItem = {
   key: string;
@@ -46,17 +47,20 @@ const findMenuItemByKey = (items: MenuItem[], keyToFind: string): MenuItem => {
 
 export const SideBarComponent: React.FC<{}> = () => {
   const isCollapsed: boolean = collapsed.value;
+  const navigate = useNavigate();
 
   const onClickMenu = ({ key }: { key: string }) => {
     const menu = findMenuItemByKey(menus, key);
-    url.value = menu.url;
     // console.log([ ...menus, ...menus.flatMap(item => item.children || []) ]);
+    url.value = menu.url;
+    console.log(menu.url);
+    navigate(`/${menu.url}`);
   };
   return (
     <Sider trigger={null} collapsible collapsed={isCollapsed} width={200}>
       <div className="demo-logo-vertical" />
       <Menu
-        defaultSelectedKeys={['home']}
+        defaultSelectedKeys={[url.value]}
         theme="dark"
         mode="inline"
         items={menus}
